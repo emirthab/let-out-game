@@ -1,0 +1,7 @@
+res://assets/maps/lobby.gd
+res://assets/player/name/player_name.tscn
+res://assets/player/name/player_names.gd
+res://assets/scripts/Networking/Server.gd
+res://assets/ui/demo/room_creation.gd
+res://assets/ui/demo/room_creation.tscn
+res://default_bus_layout.tres

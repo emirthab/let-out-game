@@ -1,0 +1,323 @@
+[gd_scene load_steps=7 format=3 uid="uid://dw8rx8ux6v3nv"]
+
+[ext_resource type="Script" path="res://assets/ui/rooms.gd" id="1_pjm3x"]
+[ext_resource type="FontData" uid="uid://peae1jf0vjsk" path="res://assets/fonts/AzeretMono-Medium.ttf" id="2_4o5fj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vtn6"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Font" id="Font_cstbx"]
+variation_coordinates = {
+"weight": 100
+}
+data/0 = ExtResource( "2_4o5fj" )
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qgoxx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3q4fr"]
+bg_color = Color(0.137255, 0.137255, 0.137255, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Rooms" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 218.0
+offset_top = 105.0
+offset_right = -252.0
+offset_bottom = -155.0
+script = ExtResource( "1_pjm3x" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="error_panel" type="Panel" parent="."]
+visible = false
+anchor_left = 0.494
+anchor_top = 0.5
+anchor_right = 0.494
+anchor_bottom = 0.5
+offset_left = -181.676
+offset_top = -236.0
+offset_right = 181.324
+offset_bottom = -210.0
+theme_override_styles/panel = SubResource( "StyleBoxFlat_7vtn6" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="error_panel"]
+anchor_left = 0.5
+anchor_top = 0.512
+anchor_right = 0.5
+anchor_bottom = 0.512
+offset_left = -172.5
+offset_top = -9.48
+offset_right = 174.5
+offset_bottom = 13.52
+theme_override_colors/font_color = Color(1, 0.0117647, 0.0313726, 1)
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="error_panel"]
+wait_time = 2.0
+one_shot = true
+
+[node name="ItemList" type="ItemList" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -277.0
+offset_top = -170.0
+offset_right = 277.081
+offset_bottom = 170.04
+theme_override_fonts/font = SubResource( "Font_cstbx" )
+theme_override_font_sizes/font_size = 14
+theme_override_styles/bg_focus = SubResource( "StyleBoxEmpty_qgoxx" )
+item_count = 1
+fixed_icon_size = Vector2(15, 15)
+item_0/text = "    Room Name                                        Users"
+item_0/selectable = false
+item_0/disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="create_room" type="Button" parent="ItemList"]
+anchor_left = 0.864
+anchor_top = 0.907
+anchor_right = 0.864
+anchor_bottom = 0.907
+offset_left = -53.726
+offset_top = -17.4162
+offset_right = 53.274
+offset_bottom = 17.5837
+text = "Create Room"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="join_room" type="Button" parent="ItemList"]
+anchor_left = 0.647
+anchor_top = 0.907
+anchor_right = 0.647
+anchor_bottom = 0.907
+offset_left = -53.4904
+offset_top = -17.4163
+offset_right = 53.5096
+offset_bottom = 17.5837
+text = "Join Room"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="refresh" type="Button" parent="ItemList"]
+anchor_left = 0.448
+anchor_top = 0.907
+anchor_right = 0.448
+anchor_bottom = 0.907
+offset_left = -43.2283
+offset_top = -17.4163
+offset_right = 43.7717
+offset_bottom = 17.5837
+text = "Refresh"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="room_creation" type="Control" parent="ItemList"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="ItemList/room_creation"]
+anchor_left = 0.5
+anchor_top = 0.466
+anchor_right = 0.5
+anchor_bottom = 0.466
+offset_left = -181.0
+offset_top = -77.44
+offset_right = 175.0
+offset_bottom = 77.56
+theme_override_styles/panel = SubResource( "StyleBoxFlat_3q4fr" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ItemList/room_creation/Panel"]
+anchor_left = 0.219
+anchor_top = 0.593
+anchor_right = 0.219
+anchor_bottom = 0.593
+offset_left = -51.964
+offset_top = -16.45
+offset_right = 36.036
+offset_bottom = 6.54999
+theme_override_font_sizes/font_size = 14
+text = "Max Player:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name_input" type="TextEdit" parent="ItemList/room_creation/Panel"]
+anchor_left = 0.5
+anchor_top = 0.365
+anchor_right = 0.503
+anchor_bottom = 0.365
+offset_left = -152.0
+offset_top = -35.575
+offset_right = 152.932
+offset_bottom = -0.575001
+placeholder_text = "Room Name"
+scroll_past_end_of_file = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pass_input" type="TextEdit" parent="ItemList/room_creation/Panel"]
+anchor_left = 0.565
+anchor_top = 0.774
+anchor_right = 0.565
+anchor_bottom = 0.774
+offset_left = -81.14
+offset_top = -17.97
+offset_right = 64.86
+offset_bottom = 17.03
+placeholder_text = "Password"
+scroll_past_end_of_file = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="max_input" type="OptionButton" parent="ItemList/room_creation/Panel"]
+anchor_left = 0.177
+anchor_top = 0.777
+anchor_right = 0.177
+anchor_bottom = 0.777
+offset_left = -36.012
+offset_top = -16.435
+offset_right = 21.988
+offset_bottom = 14.565
+text = "5"
+item_count = 8
+selected = 0
+popup/item_0/text = "5"
+popup/item_0/id = 0
+popup/item_1/text = "6"
+popup/item_1/id = 1
+popup/item_2/text = "7"
+popup/item_2/id = 2
+popup/item_3/text = "8"
+popup/item_3/id = 3
+popup/item_4/text = "9"
+popup/item_4/id = 4
+popup/item_5/text = "10"
+popup/item_5/id = 5
+popup/item_6/text = "11"
+popup/item_6/id = 6
+popup/item_7/text = "12"
+popup/item_7/id = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ok_button" type="Button" parent="ItemList/room_creation/Panel"]
+anchor_left = 0.864
+anchor_top = 0.765
+anchor_right = 0.864
+anchor_bottom = 0.765
+offset_left = -22.584
+offset_top = -15.575
+offset_right = 22.416
+offset_bottom = 15.425
+text = "Ok"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="close_room_creation" type="Button" parent="ItemList/room_creation/Panel"]
+offset_left = 336.0
+offset_top = -5.0
+offset_right = 354.0
+offset_bottom = 26.0
+text = "x"
+flat = true
+
+[node name="password_container" type="Panel" parent="ItemList"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.459
+anchor_right = 0.5
+anchor_bottom = 0.459
+offset_left = -226.04
+offset_top = -39.0784
+offset_right = 225.96
+offset_bottom = 38.9216
+theme_override_styles/panel = SubResource( "StyleBoxFlat_3q4fr" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="password_input" type="TextEdit" parent="ItemList/password_container"]
+anchor_left = 0.426
+anchor_top = 0.5
+anchor_right = 0.426
+anchor_bottom = 0.506
+offset_left = -163.552
+offset_top = -18.0
+offset_right = 163.448
+offset_bottom = 16.532
+placeholder_text = "Password"
+scroll_past_end_of_file = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ok_password" type="Button" parent="ItemList/password_container"]
+anchor_left = 0.904
+anchor_top = 0.494
+anchor_right = 0.904
+anchor_bottom = 0.5
+offset_left = -21.608
+offset_top = -15.532
+offset_right = 21.392
+offset_bottom = 15.0
+text = "Ok"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="close_password" type="Button" parent="ItemList/password_container"]
+anchor_left = 0.976
+anchor_top = 0.109
+anchor_right = 0.976
+anchor_bottom = 0.109
+offset_left = -9.15204
+offset_top = -15.502
+offset_right = 8.84796
+offset_bottom = 15.498
+text = "x"
+flat = true
+
+[connection signal="timeout" from="error_panel/Timer" to="." method="_on_timer_timeout"]
+[connection signal="item_activated" from="ItemList" to="." method="_on_item_list_item_activated"]
+[connection signal="pressed" from="ItemList/create_room" to="." method="_on_create_room_pressed"]
+[connection signal="pressed" from="ItemList/join_room" to="." method="_on_join_room_pressed"]
+[connection signal="pressed" from="ItemList/refresh" to="." method="_on_refresh_pressed"]
+[connection signal="pressed" from="ItemList/room_creation/Panel/ok_button" to="." method="_on_ok_button_pressed"]
+[connection signal="pressed" from="ItemList/room_creation/Panel/close_room_creation" to="." method="_on_close_room_creation_pressed"]
+[connection signal="pressed" from="ItemList/password_container/ok_password" to="." method="_on_ok_password_pressed"]
+[connection signal="pressed" from="ItemList/password_container/close_password" to="." method="_on_close_password_pressed"]

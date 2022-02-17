@@ -1,0 +1,39 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bx6isbujnwva2"
+path="res://.godot/imported/model.glb-226f4eee773da7a5d1d5d1949d55f8a2.scn"
+
+[deps]
+
+source_file="res://assets/player/model.glb"
+dest_files=["res://.godot/imported/model.glb-226f4eee773da7a5d1d5d1949d55f8a2.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.1
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+import_script/path=""
+_subresources={
+"meshes": {
+"model_meshId0_name": {
+"generate/lods": 2
+}
+},
+"nodes": {
+"PATH:AnimationPlayer": {
+"import/skip_import": true
+}
+}
+}

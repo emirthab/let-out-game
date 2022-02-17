@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://r048b4rmua07"]
+
+[ext_resource type="PackedScene" uid="uid://bx6isbujnwva2" path="res://assets/player/model.glb" id="1_cc5nu"]
+[ext_resource type="PackedScene" uid="uid://w2a63lvxcq2v" path="res://assets/player/hand.scn" id="3_dlvyk"]
+[ext_resource type="PackedScene" uid="uid://2nnbw871vsg8" path="res://assets/player/animation/AnimationPlayer.tscn" id="4_bsw13"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bvv5pyw3hdoe8" path="res://assets/player/animation/StateMachine.res" id="5_8ethv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kapye"]
+radius = 0.478115
+height = 1.91377
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_bdchx"]
+
+[node name="Puppet_player" type="CharacterBody3D"]
+
+[node name="model" parent="." instance=ExtResource( "1_cc5nu" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0908976, 0)
+
+[node name="Skeleton3D" parent="model/Armature" index="0"]
+bones/0/position = Vector3(2.09792, -2.92855, -101.983)
+bones/0/rotation = Quaternion(-0.683095, -0.270047, 0.250004, 0.630835)
+bones/1/rotation = Quaternion(-0.00211783, 0.0414168, -0.00557388, 0.999124)
+bones/2/rotation = Quaternion(0.0995389, 0.0824226, -0.00969851, 0.991566)
+bones/3/rotation = Quaternion(0.0996014, 0.0824353, -0.00971913, 0.991559)
+bones/4/position = Vector3(0, 18.2534, -4.76837e-07)
+bones/4/rotation = Quaternion(0.0167391, -0.0108515, 0.000924565, 0.999801)
+bones/5/rotation = Quaternion(-0.0575425, 0.176685, -0.0115246, 0.982517)
+bones/7/position = Vector3(6.91087, 16.6311, -0.298216)
+bones/7/rotation = Quaternion(0.544127, 0.460855, -0.550789, 0.433783)
+bones/8/position = Vector3(9.54396e-06, 14.1652, -2.83337e-05)
+bones/8/rotation = Quaternion(0.496481, -0.0383784, 0.0449737, 0.866031)
+bones/9/position = Vector3(-4.16178e-06, 35.8272, -1.05519e-05)
+bones/9/rotation = Quaternion(0.083862, -0.202567, 0.399604, 0.890084)
+bones/11/position = Vector3(-6.91087, 16.6045, -0.0433125)
+bones/11/rotation = Quaternion(0.605429, -0.405309, 0.509346, 0.457982)
+bones/12/position = Vector3(4.5706e-06, 14.1653, 1.47857e-05)
+bones/12/rotation = Quaternion(0.464504, 0.00508245, 0.185242, 0.865964)
+bones/13/position = Vector3(6.84795e-06, 35.8674, 1.96453e-06)
+bones/13/rotation = Quaternion(0.115705, 0.318498, -0.344452, 0.875514)
+bones/15/rotation = Quaternion(-0.0757338, -0.226286, -0.965951, 0.0999886)
+bones/16/rotation = Quaternion(-0.3594, 0.117951, -0.0196286, 0.925491)
+bones/17/rotation = Quaternion(0.53478, 0.0290123, -0.0573085, 0.842547)
+bones/18/rotation = Quaternion(0.351192, 0.0223402, -0.0235785, 0.93574)
+bones/20/rotation = Quaternion(-0.12177, 0.00963685, 0.983685, 0.132068)
+bones/21/rotation = Quaternion(-0.343816, 0.0767287, -0.0222394, 0.935633)
+bones/22/position = Vector3(1.77015e-06, 40.8806, -2.8048e-07)
+bones/22/rotation = Quaternion(0.649891, 0.00892559, 0.12716, 0.74926)
+bones/23/rotation = Quaternion(0.349365, -0.00138423, -0.00212939, 0.936983)
+
+[node name="hand" parent="model/Armature/Skeleton3D" index="1" instance=ExtResource( "3_dlvyk" )]
+transform = Transform3D(-0.733388, -0.38684, 0.559014, 0.601326, 0.0144145, 0.798874, -0.317094, 0.922035, 0.222045, -31.3361, -27.224, -106.6)
+
+[node name="AnimationPlayer" parent="model" instance=ExtResource( "4_bsw13" )]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03192, 0)
+shape = SubResource( "CapsuleShape3D_kapye" )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = ExtResource( "5_8ethv" )
+anim_player = NodePath("../model/AnimationPlayer")
+active = true
+parameters/playback = SubResource( "AnimationNodeStateMachinePlayback_bdchx" )
+
+[editable path="model"]

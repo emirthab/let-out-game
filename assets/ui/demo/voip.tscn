@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://ctr3s86wdc1ij"]
+
+[ext_resource type="Script" path="res://assets/ui/demo/voip.gd" id="1_e6lh6"]
+[ext_resource type="PackedScene" uid="uid://br8f8mkfkgnmw" path="res://assets/player/player.tscn" id="2_8nf1o"]
+[ext_resource type="Texture2D" uid="uid://ccf6d0052kcet" path="res://assets/textures/grid.png" id="2_p0k6k"]
+[ext_resource type="Texture2D" uid="uid://b8xtjoxio7sw6" path="res://assets/textures/daytime.png" id="4_uhys8"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_sbmsh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_geqwq"]
+albedo_texture = ExtResource( "2_p0k6k" )
+uv1_triplanar = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jk1es"]
+panorama = ExtResource( "4_uhys8" )
+
+[sub_resource type="Sky" id="Sky_274s7"]
+sky_material = SubResource( "PanoramaSkyMaterial_jk1es" )
+
+[sub_resource type="Environment" id="Environment_6kwxk"]
+background_mode = 2
+sky = SubResource( "Sky_274s7" )
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32w3q"]
+
+[node name="Voip" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( "1_e6lh6" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RecordButton" type="Button" parent="."]
+offset_left = 13.0
+offset_top = 9.0
+offset_right = 146.0
+offset_bottom = 70.0
+text = "Record"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="Button" parent="."]
+offset_left = 169.0
+offset_top = 14.0
+offset_right = 311.0
+offset_bottom = 73.0
+text = "Play"
+
+[node name="AudioStreamRecord" type="AudioStreamPlayer" parent="."]
+stream = SubResource( "AudioStreamMicrophone_sbmsh" )
+autoplay = true
+bus = &"Record"
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+material_override = SubResource( "StandardMaterial3D_geqwq" )
+use_collision = true
+size = Vector3(61.2977, 0.277763, 48.7895)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 0.560726, 0.828002, 0, -0.828002, 0.560726, 0, 5.37512, 0)
+shadow_enabled = true
+
+[node name="Player" parent="Map" instance=ExtResource( "2_8nf1o" )]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.512054, -3.92028)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
+environment = SubResource( "Environment_6kwxk" )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45766, 1.46049, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3357, 1.02561, 0.547504)
+material_override = SubResource( "StandardMaterial3D_32w3q" )
+
+[connection signal="pressed" from="RecordButton" to="." method="_on_record_button_pressed"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
