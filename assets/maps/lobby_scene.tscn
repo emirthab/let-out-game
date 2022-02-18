@@ -471,17 +471,18 @@ transform = Transform3D(-0.00847216, -0.676095, 0.736765, 0.999955, -0.00872648,
 size = Vector3(4.735, 0.3, 0.3)
 material = SubResource( "StandardMaterial3D_ppjle" )
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Scene"]
+transform = Transform3D(0.638041, 0.198142, 0.744072, -0.171808, 0.978597, -0.113269, -0.75059, -0.0555672, 0.658427, 26.5396, 14.4773, 42.0289)
+light_energy = 15.0
+shadow_enabled = true
+spot_range = 39.4988
+spot_angle = 34.9296
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.685385, -0.120516, 0.718139, 0.00808376, 0.987408, 0.157989, -0.728136, -0.102478, 0.677729, 20.223, 16.1988, 36.4451)
 fov = 75.6
 
 [node name="Players" type="Node3D" parent="."]
-
-[node name="player5Pos" type="Position3D" parent="Players"]
-transform = Transform3D(0.96659, 0, 1.33977, 0, 1.65205, 0, -1.33977, 0, 0.96659, 18.9712, 13.0642, 26.4892)
-
-[node name="player3Pos" type="Position3D" parent="Players"]
-transform = Transform3D(0.96659, 0, 1.33977, 0, 1.65205, 0, -1.33977, 0, 0.96659, 17.4911, 13.0642, 28.2243)
 
 [node name="player1Pos" type="Position3D" parent="Players"]
 transform = Transform3D(0.96659, 0, 1.33977, 0, 1.65205, 0, -1.33977, 0, 0.96659, 15.78, 13.0642, 29.9022)
@@ -489,18 +490,17 @@ transform = Transform3D(0.96659, 0, 1.33977, 0, 1.65205, 0, -1.33977, 0, 0.96659
 [node name="player2Pos" type="Position3D" parent="Players"]
 transform = Transform3D(0.96659, 0, 1.33977, 0, 1.65205, 0, -1.33977, 0, 0.96659, 14.0758, 13.0642, 31.6184)
 
+[node name="player3Pos" type="Position3D" parent="Players"]
+transform = Transform3D(0.96659, 0, 1.33977, 0, 1.65205, 0, -1.33977, 0, 0.96659, 17.4911, 13.0642, 28.2243)
+
 [node name="player4Pos" type="Position3D" parent="Players"]
 transform = Transform3D(0.96659, 0, 1.33977, 0, 1.65205, 0, -1.33977, 0, 0.96659, 12.3124, 13.0642, 33.5428)
 
+[node name="player5Pos" type="Position3D" parent="Players"]
+transform = Transform3D(0.96659, 0, 1.33977, 0, 1.65205, 0, -1.33977, 0, 0.96659, 18.9712, 13.0642, 26.4892)
+
 [node name="player6Pos" type="Position3D" parent="Players"]
 transform = Transform3D(0.96659, 0, 1.33977, 0, 1.65205, 0, -1.33977, 0, 0.96659, 10.5349, 13.0642, 35.5947)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Players"]
-transform = Transform3D(0.638041, 0.198142, 0.744072, -0.171808, 0.978597, -0.113269, -0.75059, -0.0555673, 0.658427, 26.5396, 14.4773, 42.0289)
-light_energy = 15.0
-shadow_enabled = true
-spot_range = 39.4988
-spot_angle = 34.9296
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( "Environment_6s7pe" )
@@ -510,3 +510,16 @@ transform = Transform3D(0.848003, 0.528195, 0.0436017, -0.277771, 0.372872, 0.88
 light_color = Color(0.101961, 0.215686, 0.509804, 1)
 shadow_enabled = true
 directional_shadow_split_1 = 0.04
+
+[node name="start_button" type="Button" parent="."]
+visible = false
+offset_left = 894.0
+offset_top = 524.0
+offset_right = 995.0
+offset_bottom = 576.0
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="start_button" to="." method="_on_start_button_pressed"]

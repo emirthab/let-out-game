@@ -60,8 +60,8 @@ func create_room(room_name,room_pass,max_users,public_ip,public_port):
 	var resp = await HTTP.put_request(url,data)
 	if resp[1] == 200:
 		print("Room succesfully created")
-		Ngrok.start_ngrok(GlobalConfigs.server_port)
-		GlobalConfigs.created_room_id = maxid
+		Ngrok.start_ngrok(Globals.server_port)
+		Globals.created_room_id = maxid
 
 func get_secret_room_meta(room_id,room_pass):
 	var url = path + "room_metas/" + str(room_id) + "/" + room_pass + ".json"

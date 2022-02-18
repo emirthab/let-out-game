@@ -23,11 +23,12 @@ driver/mix_rate=48000
 [autoload]
 
 Firebase="*res://assets/scripts/Firebase.gd"
-GlobalConfigs="*res://assets/scripts/GlobalConfigs.gd"
+Globals="*res://assets/scripts/Globals.gd"
 Ngrok="*res://assets/scripts/Ngrok.gd"
 Server="*res://assets/scripts/Networking/Server.gd"
 Client="*res://assets/scripts/Networking/Client.gd"
 HTTP="*res://assets/scripts/Http.gd"
+Preloading="*res://assets/scripts/Preloading.gd"
 
 [input]
 
