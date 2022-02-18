@@ -4,7 +4,6 @@ func _ready():
 	if Globals.user_type == 1:
 		add_player_in_lobby(1,Globals.user_name)
 		$start_button.show()
-	Globals.change_scene_deferred(Globals.main_room_path)
 
 func add_player_in_lobby(id,player_name):
 	var lobby_players_node : Node3D = get_node("Players")

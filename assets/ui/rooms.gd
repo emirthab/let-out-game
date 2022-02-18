@@ -1,9 +1,13 @@
+@tool
 extends	Control
 
 var selected_room_id : int
+var process_time : float = 0.0
+var process_out : float = 0.05
 
 func _ready():
 	bring_rooms()
+
 
 func _on_create_room_pressed():
 	$ItemList/room_creation.show()
@@ -25,22 +29,20 @@ func _on_ok_button_pressed():
 	if len(room_name) >	7 :
 		if room_pass != "":
 			if len(room_pass) >	3:
-				var err = Server.create_server(GlobalConfigs.server_port,max_user)
+				var err = Server.create_server(Globals.server_port,max_user)
 				if err == OK:
 					print("deneme0")
-					Ngrok.start_ngrok(GlobalConfigs.server_port)
-					var public_url = await Ngrok.get_public()
-					print("deneme1")
-					Firebase.create_room(room_name,room_pass,max_user,public_url["ip"],public_url["port"])
-					print("deneme2")
+					Ngrok.start_ngrok(Globals.server_port)
+					var public_url = await Ngrok.get_public()					
+					Firebase.create_room(room_name,room_pass,max_user,public_url["ip"],public_url["port"])					
 			else:
 				$error_panel/Timer.start()
 				$error_panel.show()
 				$error_panel/Label.text = "Room password must be higher than 3 character."
 		else:
-			var err = Server.create_server(GlobalConfigs.server_port,max_user)
+			var err = Server.create_server(Globals.server_port,max_user)
 			if err == OK:
-				Ngrok.start_ngrok(GlobalConfigs.server_port)
+				Ngrok.start_ngrok(Globals.server_port)
 				var public_url = await Ngrok.get_public()
 				Firebase.create_room(room_name,room_pass,max_user,public_url["ip"],public_url["port"])
 	else:
@@ -49,7 +51,7 @@ func _on_ok_button_pressed():
 		$error_panel/Label.text = "Room name must be higher than 8 character."
 
 func bring_rooms():
-	GlobalConfigs.room_structure.clear()
+	Globals.room_structure.clear()
 	var rooms = await Firebase.get_rooms()
 	if rooms != null:
 		var lock_icon = load("res://assets/textures/icons/lock.png")
@@ -57,20 +59,55 @@ func bring_rooms():
 			var room = rooms[i]
 			if room != null:
 				var user_data = str(room["users"])+"/"+str(room["max_users"])
-				var room_name = room["name"]
-				var total_char = 53 - len(room_name) - len(user_data)
-				var spaces = ""
-				for i in range(total_char):
-					spaces = spaces+" "
+				var room_name = room["name"]				
 				if room["pass"] == true:
-					$ItemList.add_item("  "+ room_name + spaces + user_data,lock_icon)
+					$ItemList.add_item("  "+ room_name + " " + user_data,lock_icon)
 				else:
-					$ItemList.add_item("    "+ room_name + spaces + user_data)
-				GlobalConfigs.room_structure.append(i)
+					$ItemList.add_item("    "+ room_name + " " + user_data)
+				Globals.room_structure.append(i)
 				
 
 func _on_timer_timeout():
 	$error_panel.hide()
+
+func _process(delta):
+	process_time += delta
+	if process_time >= process_out:
+		
+		#one char has : 9px width if font_size = 14
+		var _rect_size = $ItemList.rect_size.x as int
+
+		for _idx in range($ItemList.get_item_count()):
+			var total_char = 0
+			var room_name = ""
+			var room_count = ""
+			var _text = $ItemList.get_item_text(_idx)
+			var _splitted = _text.split(" ") as Array
+			for i in range(len(_splitted)):
+				_splitted.erase("")
+
+			for i in range(len(_splitted)):
+				total_char += _splitted[i].length()
+				if i != len(_splitted)-1:
+					room_name += _splitted[i]+" "
+				else:
+					room_count += _splitted[i]
+			
+			#9 for 14px
+			var total_lenght = (total_char * 9) + (len(_splitted) * 9)
+			var space_count = ((_rect_size - total_lenght -55) / 9) as int
+			print("char = "+str(total_char))
+			print("space = "+str(space_count))
+			print("name = "+str(room_name))
+			print("count = "+str(room_count))
+
+			var spaces = ""
+			for i in range(space_count):
+				spaces += " "
+			
+			$ItemList.set_item_text(_idx,"    " + room_name + spaces + room_count)
+			
+		process_time = 0
 
 func _on_refresh_pressed():
 	$ItemList.clear()
@@ -87,7 +124,7 @@ func _on_item_list_item_activated(index):
 func join_room():
 	var selected = $ItemList.get_selected_items()
 	if len(selected) > 0:
-		selected_room_id = GlobalConfigs.room_structure[selected[0]-1]
+		selected_room_id = Globals.room_structure[selected[0]-1]
 		var room = Firebase.rooms[selected_room_id]
 		if room["pass"] == false:
 			var ip = room["ip"]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://cx0lp3ds57ckn"]
+[gd_scene load_steps=32 format=3 uid="uid://cx0lp3ds57ckn"]
 
 [ext_resource type="Script" path="res://assets/maps/lobby.gd" id="1_g05nk"]
 [ext_resource type="PackedScene" uid="uid://bee73yf8lip05" path="res://assets/geometry/ship.fbx" id="1_i2h34"]
 [ext_resource type="Texture2D" uid="uid://eu2808o4u2ks" path="res://assets/textures/night.png" id="2_r3pod"]
-[ext_resource type="PackedScene" uid="uid://p6j3yngif8o8" path="res://assets/tree/tree.tscn" id="3_5vm0c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qw31w"]
 albedo_color = Color(0.301961, 0.74902, 1, 1)
@@ -358,29 +357,6 @@ size = Vector3(893.834, 0.504241, 711.564)
 
 [node name="Trees" type="Node3D" parent="Scene"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82489, 16.5044, 17.7933)
-
-[node name="Tree" parent="Scene/Trees" instance=ExtResource( "3_5vm0c" )]
-
-[node name="Tree7" parent="Scene/Trees" instance=ExtResource( "3_5vm0c" )]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.91418, -0.749407, -4.65873)
-
-[node name="Tree3" parent="Scene/Trees" instance=ExtResource( "3_5vm0c" )]
-transform = Transform3D(0.656806, 0, -0.52464, 0, 0.886598, 0, 0.52464, 0, 0.656806, 5.05515, -0.034399, -5.03084)
-
-[node name="Tree4" parent="Scene/Trees" instance=ExtResource( "3_5vm0c" )]
-transform = Transform3D(0.465803, 0, -0.558459, 0, 0.805912, 0, 0.558459, 0, 0.465803, 6.4281, -0.640341, 6.34755)
-
-[node name="Tree5" parent="Scene/Trees" instance=ExtResource( "3_5vm0c" )]
-transform = Transform3D(0.262345, -0.00652647, -0.678225, 0.0021246, 0.805886, -0.00549261, 0.678247, 0, 0.262353, 6.26117, -0.572134, -0.0532665)
-
-[node name="Tree8" parent="Scene/Trees" instance=ExtResource( "3_5vm0c" )]
-transform = Transform3D(0.262345, -0.00652647, -0.678225, 0.0021246, 0.805886, -0.00549261, 0.678247, 0, 0.262353, 1.02597, 0.273245, 4.39958)
-
-[node name="Tree9" parent="Scene/Trees" instance=ExtResource( "3_5vm0c" )]
-transform = Transform3D(0.262345, -0.00652647, -0.678225, 0.0021246, 0.805886, -0.00549261, 0.678247, 0, 0.262353, 12.9257, -0.744642, -6.19864)
-
-[node name="Tree2" parent="Scene/Trees" instance=ExtResource( "3_5vm0c" )]
-transform = Transform3D(0.644174, 0, -0.904167, 0, 1.07899, 0, 0.904167, 0, 0.644174, 13.0039, -1.70424, 0)
 
 [node name="island" type="Node3D" parent="Scene"]
 transform = Transform3D(4.97983, 0, 0, 0, 4.97983, 0, 0, 0, 4.97983, 0, 0.676447, 0)

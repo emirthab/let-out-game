@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dw8rx8ux6v3nv"]
+[gd_scene load_steps=8 format=3 uid="uid://dw8rx8ux6v3nv"]
 
 [ext_resource type="Script" path="res://assets/ui/rooms.gd" id="1_pjm3x"]
 [ext_resource type="FontData" uid="uid://peae1jf0vjsk" path="res://assets/fonts/AzeretMono-Medium.ttf" id="2_4o5fj"]
@@ -10,10 +10,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="Font" id="Font_cstbx"]
-variation_coordinates = {
-"weight": 100
-}
+[sub_resource type="Font" id="Font_iplat"]
 data/0 = ExtResource( "2_4o5fj" )
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qgoxx"]
@@ -24,6 +21,9 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="Font" id="Font_ihhbo"]
+data/0 = ExtResource( "2_4o5fj" )
 
 [node name="Rooms" type="Control"]
 anchor_right = 1.0
@@ -81,14 +81,16 @@ offset_left = -277.0
 offset_top = -170.0
 offset_right = 277.081
 offset_bottom = 170.04
-theme_override_fonts/font = SubResource( "Font_cstbx" )
+theme_override_fonts/font = SubResource( "Font_iplat" )
 theme_override_font_sizes/font_size = 14
 theme_override_styles/bg_focus = SubResource( "StyleBoxEmpty_qgoxx" )
-item_count = 1
+item_count = 3
 fixed_icon_size = Vector2(15, 15)
 item_0/text = "    Room Name                                        Users"
 item_0/selectable = false
 item_0/disabled = true
+item_1/text = "    Emir's Room Welcome                               5/12"
+item_2/text = "    Deneem odası                                      9/12"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -311,6 +313,15 @@ offset_right = 8.84796
 offset_bottom = 15.498
 text = "x"
 flat = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 2.0
+offset_top = -47.0
+offset_right = 227.0
+offset_bottom = -24.0
+theme_override_fonts/font = SubResource( "Font_ihhbo" )
+theme_override_font_sizes/font_size = 14
+text = "Deneme yazı deneme deneme s s s"
 
 [connection signal="timeout" from="error_panel/Timer" to="." method="_on_timer_timeout"]
 [connection signal="item_activated" from="ItemList" to="." method="_on_item_list_item_activated"]
