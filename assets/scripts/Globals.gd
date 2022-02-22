@@ -2,10 +2,10 @@ extends Node
 
 const server_port = 3636
 
-var room_creation_path = "res://assets/ui/demo/room_creation.tscn"
-var main_room_path = "res://assets/maps/Map_demo.tscn"
+const room_creation_path : String = "res://assets/ui/demo/room_creation.tscn"
+const main_room_path : String = "res://assets/maps/Map_demo.tscn"
 
-var created_room_id
+var created_room_id : int
 var room_structure = []
 var user_type = 0 #1 for server 2 for client
 
@@ -25,12 +25,5 @@ func _notification(what):
 func get_current_scene():
 	return get_tree().current_scene
 
-func change_scene_deferred(path):
-	var scene_name = get_tree().current_scene.name
-	var node_scene = get_tree().root.get_node(str(scene_name))
-	get_tree().root.remove_child(node_scene)
-	node_scene.call_deferred("free")
-
-	var next_level_resource = load(path)
-	var next_level = next_level_resource.instantiate()
-	get_tree().root.add_child(next_level)
+func _change_scene(path):
+	get_tree().change_scene(path)

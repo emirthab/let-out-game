@@ -76,6 +76,7 @@ func _input(event):
 		$Pivot.rotation.x = clamp($Pivot.rotation.x,deg2rad(-30),deg2rad(30))
 	
 	if Input.is_action_just_pressed("use"):
+		print(get_tree().current_scene)
 		#targeting = false if targeting else true
 		var curve = get_tree().current_scene.get_node("fishing_area").curve
 		var point = curve.get_closest_point(global_transform.origin)

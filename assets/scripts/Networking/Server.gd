@@ -25,7 +25,7 @@ func create_server(port,max_user):
 		}
 
 		Globals.user_type	= 1
-		get_tree().change_scene("res://assets/maps/lobby_scene.tscn")
+		Globals._change_scene("res://assets/maps/lobby_scene.tscn")
 		return OK
 		
 	else:

@@ -1,1 +1,8 @@
+res://assets/maps/lobby.gd
+res://assets/player/player.gd
+res://assets/scripts/Firebase.gd
+res://assets/scripts/Globals.gd
+res://assets/scripts/Networking/Server.gd
+res://assets/scripts/Networking/dataReceiver.gd
+res://assets/ui/demo/room_creation.tscn
 res://default_bus_layout.tres

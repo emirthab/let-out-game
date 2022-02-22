@@ -41,4 +41,5 @@ func _on_player_disconnected(id):
 	#Firebase.decrease_user(Globals.created_room_id)
 
 func _start_game():
-	Globals.change_scene_deferred(Globals.main_room_path)
+	Globals._change_scene(Globals.main_room_path)
+	#Globals._change_scene("res://assets/maps/Map_demo.tscn")
